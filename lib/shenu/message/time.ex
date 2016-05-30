@@ -1,4 +1,4 @@
-defmodule Shenu.Time do
+defmodule Shenu.Message.Time do
   defstruct hour: 0,
             minute: 0,
             second: 0
@@ -8,11 +8,11 @@ defmodule Shenu.Time do
   end
 end
 
-defimpl Calendar.ContainsTime, for: Shenu.Time do
+defimpl Calendar.ContainsTime, for: Shenu.Message.Time do
   def time_struct(%{hour: h, minute: m, second: s}), do: Calendar.Time.from_erl!({h, m, s})
 end
 
-defimpl Shenu, for: Shenu.Time do
+defimpl Shenu.Message, for: Shenu.Message.Time do
   def difference(m, m, _) do
     0
   end

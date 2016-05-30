@@ -1,4 +1,4 @@
-defmodule Shenu.Email do
+defmodule Shenu.Message.Email do
   defstruct user: nil,
             domain: nil
 
@@ -7,12 +7,12 @@ defmodule Shenu.Email do
   end
 end
 
-defimpl Shenu, for: Shenu.Email do
+defimpl Shenu.Message, for: Shenu.Message.Email do
   def difference(a, b, method) do
-    Enum.reduce(unquote(Map.from_struct(%Shenu.Email{}) |> Map.keys()), 0, fn(key, acc) ->
+    Enum.reduce(unquote(Map.from_struct(%Shenu.Message.Email{}) |> Map.keys()), 0, fn(key, acc) ->
       a_v = a |> Map.get(key) |> to_string()
       b_v = b |> Map.get(key) |> to_string()
-      acc + Shenu.BitString.difference(a_v, b_v, method)
+      acc + Shenu.Message.BitString.difference(a_v, b_v, method)
     end)
   end
 end

@@ -1,10 +1,10 @@
-defmodule Shenu.Color do
+defmodule Shenu.Message.Color do
   @moduledoc """
   Struct representing RGB colors
 
-      iex> a = Shenu.Color.new(r: 20, g: 40, b: 50)
-      iex> b = Shenu.Color.new(r: 120, g: 10, b: 70)
-      iex> Shenu.difference(a, b)
+      iex> a = Shenu.Message.Color.new(r: 20, g: 40, b: 50)
+      iex> b = Shenu.Message.Color.new(r: 120, g: 10, b: 70)
+      iex> Shenu.Message.difference(a, b)
       42.2736269661734
   """
 
@@ -23,7 +23,7 @@ defmodule Shenu.Color do
   end
 end
 
-defimpl Shenu, for: Shenu.Color do
+defimpl Shenu.Message, for: Shenu.Message.Color do
   def difference(m, m, _) do
     0
   end

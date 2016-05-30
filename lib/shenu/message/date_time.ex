@@ -1,4 +1,4 @@
-defmodule Shenu.DateTime do
+defmodule Shenu.Message.DateTime do
   defstruct year: 1,
             month: 1,
             day: 1,
@@ -12,7 +12,7 @@ defmodule Shenu.DateTime do
   end
 end
 
-defimpl Calendar.ContainsDateTime, for: Shenu.DateTime do
+defimpl Calendar.ContainsDateTime, for: Shenu.Message.DateTime do
   def dt_struct(%{year: y,
                   month: m,
                   day: d,
@@ -24,7 +24,7 @@ defimpl Calendar.ContainsDateTime, for: Shenu.DateTime do
   end
 end
 
-defimpl Shenu, for: Shenu.DateTime do
+defimpl Shenu.Message, for: Shenu.Message.DateTime do
   def difference(m, m, _) do
     0
   end

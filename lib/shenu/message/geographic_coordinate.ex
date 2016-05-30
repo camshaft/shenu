@@ -1,4 +1,4 @@
-defmodule Shenu.GeographicCoordinate do
+defmodule Shenu.Message.GeographicCoordinate do
   defstruct [latitude: 0,
              longitude: 0,
              # elevation: 0 ?
@@ -9,7 +9,7 @@ defmodule Shenu.GeographicCoordinate do
   end
 end
 
-defimpl Geocalc.Point, for: Shenu.GeographicCoordinate do
+defimpl Geocalc.Point, for: Shenu.Message.GeographicCoordinate do
   def latitude(%{latitude: latitude}) do
     latitude
   end
@@ -18,7 +18,7 @@ defimpl Geocalc.Point, for: Shenu.GeographicCoordinate do
   end
 end
 
-defimpl Shenu, for: Shenu.GeographicCoordinate do
+defimpl Shenu.Message, for: Shenu.Message.GeographicCoordinate do
   def difference(m, m, _) do
     0
   end

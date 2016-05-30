@@ -1,4 +1,4 @@
-defmodule Shenu.Text do
+defmodule Shenu.Message.Text do
   defstruct value: ""
 
   def new(value \\ "") do
@@ -6,7 +6,7 @@ defmodule Shenu.Text do
   end
 end
 
-defimpl Shenu, for: BitString do
+defimpl Shenu.Message, for: BitString do
   def difference(m, m, _) do
     0
   end
@@ -25,8 +25,8 @@ defimpl Shenu, for: BitString do
   end
 end
 
-defimpl Shenu, for: Shenu.Text do
+defimpl Shenu.Message, for: Shenu.Message.Text do
   def difference(%{value: a}, %{value: b}, method) do
-    Shenu.BitString.difference(a, b, method)
+    Shenu.Message.BitString.difference(a, b, method)
   end
 end

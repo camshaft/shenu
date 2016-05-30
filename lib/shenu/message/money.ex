@@ -1,4 +1,4 @@
-defmodule Shenu.Money do
+defmodule Shenu.Message.Money do
   defstruct currency: "USD",
             amount: 0
 
@@ -7,7 +7,7 @@ defmodule Shenu.Money do
   end
 end
 
-defimpl Shenu, for: Shenu.Money do
+defimpl Shenu.Message, for: Shenu.Message.Money do
   def difference(m, m, _) do
     0
   end
@@ -22,7 +22,6 @@ defimpl Shenu, for: Shenu.Money do
     a
   end
   defp to_usd(%{currency: c, amount: a}) do
-    ## TODO cache this
     YahooFx.rate(c, "USD")[:rate] * a
   end
 end

@@ -1,4 +1,4 @@
-defmodule Shenu.Coordinate do
+defmodule Shenu.Message.Coordinate do
   defstruct dimensions: %{}
 
   def new(dimensions \\ []) do
@@ -7,7 +7,7 @@ defmodule Shenu.Coordinate do
   end
 end
 
-defimpl Shenu, for: Shenu.Coordinate do
+defimpl Shenu.Message, for: Shenu.Message.Coordinate do
   def difference(m, m, _) do
     0
   end

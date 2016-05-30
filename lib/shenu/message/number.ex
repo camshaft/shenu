@@ -1,4 +1,4 @@
-defmodule Shenu.Number do
+defmodule Shenu.Message.Number do
   defstruct value: 0
 
   def new(value) do
@@ -6,7 +6,7 @@ defmodule Shenu.Number do
   end
 end
 
-defimpl Shenu, for: [Integer, Float] do
+defimpl Shenu.Message, for: [Integer, Float] do
   def difference(m, m, _) do
     0
   end
@@ -15,8 +15,8 @@ defimpl Shenu, for: [Integer, Float] do
   end
 end
 
-defimpl Shenu, for: Shenu.Number do
+defimpl Shenu.Message, for: Shenu.Message.Number do
   def difference(%{value: a}, %{value: b}, method) do
-    Shenu.Integer.difference(a, b, method)
+    Shenu.Message.Integer.difference(a, b, method)
   end
 end

@@ -1,13 +1,13 @@
-defmodule Shenu.MultiCategory do
+defmodule Shenu.Message.MultiCategory do
   defstruct categories: []
 
   def new(list \\ []) do
-    set = Enum.into(list, HashSet.new())
+    set = Enum.into(list, MapSet.new())
     %__MODULE__{categories: set}
   end
 end
 
-defimpl Shenu, for: Shenu.MultiCategory do
+defimpl Shenu.Message, for: Shenu.Message.MultiCategory do
   def difference(m, m, _) do
     0
   end

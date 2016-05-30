@@ -1,4 +1,4 @@
-defmodule Shenu.Date do
+defmodule Shenu.Message.Date do
   defstruct year: 0,
             month: 1,
             day: 1
@@ -8,13 +8,13 @@ defmodule Shenu.Date do
   end
 end
 
-defimpl Calendar.ContainsDate, for: Shenu.Date do
+defimpl Calendar.ContainsDate, for: Shenu.Message.Date do
   def date_struct(%{year: y, month: m, day: d}) do
     Calendar.Date.from_erl!({y, m, d})
   end
 end
 
-defimpl Shenu, for: Shenu.Date do
+defimpl Shenu.Message, for: Shenu.Message.Date do
   def difference(m, m, _) do
     0
   end

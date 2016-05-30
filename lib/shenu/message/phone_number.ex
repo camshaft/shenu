@@ -1,9 +1,9 @@
-defmodule Shenu.PhoneNumber do
+defmodule Shenu.Message.PhoneNumber do
   defstruct country_code: nil,
             national_number: nil
 end
 
-defimpl Shenu, for: Shenu.PhoneNumber do
+defimpl Shenu.Message, for: Shenu.Message.PhoneNumber do
   def difference(m, m, _) do
     0
   end
