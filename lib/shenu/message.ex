@@ -40,7 +40,7 @@ defprotocol Shenu.Message do
       encoded = Poison.encode!(schema)
       escaped = encoded |> Poison.decode!() |> Macro.escape()
 
-      if Mix.env in [:dev, :prod] do
+      if Mix.env != :prod do
         File.write!(__DIR__ <> "/../../../schemas/#{name}.json", encoded)
       end
 
