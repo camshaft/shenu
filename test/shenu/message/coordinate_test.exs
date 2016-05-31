@@ -42,4 +42,11 @@ defmodule Test.Shenu.Message.Coordinate do
     |> parse(%{"x" => 1.2})
     |> assert_error()
   end
+
+  test "difference" do
+    a = %Coordinate{dimensions: %{"x" => 0, "y" => 0, "z" => 0}}
+    b = %Coordinate{dimensions: %{"x" => 1, "y" => 1, "z" => 1}}
+    d = Shenu.Message.difference(a, b)
+    assert d == 1.7320508075688772
+  end
 end

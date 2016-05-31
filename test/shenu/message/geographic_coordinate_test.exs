@@ -12,4 +12,11 @@ defmodule Test.Shenu.Message.GeographicCoordinate do
     |> parse(%{})
     |> assert_error()
   end
+
+  test "difference" do
+    london = %GeographicCoordinate{latitude: 51.5286416, longitude: -0.1015987}
+    paris = %GeographicCoordinate{latitude: 48.8588589, longitude: 2.3475569}
+    d = Shenu.Message.difference(london, paris)
+    assert d == 344229.88946533133
+  end
 end
