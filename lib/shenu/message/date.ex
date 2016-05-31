@@ -1,11 +1,25 @@
 defmodule Shenu.Message.Date do
-  defstruct year: 0,
-            month: 1,
-            day: 1
+  use Shenu.Message
 
-  def new(opts \\ []) do
-    struct(__MODULE__, opts)
-  end
+  defmessage %{
+    type: "object",
+    properties: %{
+      year: %{
+        type: "integer"
+      },
+      month: %{
+        type: "integer",
+        minimum: 1,
+        maximum: 12
+      },
+      day: %{
+        type: "integer",
+        minimum: 1,
+        maximum: 31
+      }
+    },
+    additionalProperties: false
+  }
 end
 
 defimpl Calendar.ContainsDate, for: Shenu.Message.Date do

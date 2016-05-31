@@ -21,7 +21,9 @@ defmodule Shenu.Mixfile do
   defp deps do
     [{:calendar, "~> 0.14.0"},
      {:color_utils, "~> 0.2.0"},
+     {:ex_json_schema, "~> 0.4.0"},
      {:geocalc, "~> 0.4"},
+     {:poison, "~> 2.1.0"},
      {:the_fuzz, "~> 0.3.0"},
      {:yahoo_fx, "~> 0.2.0"},]
   end

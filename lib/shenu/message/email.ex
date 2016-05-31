@@ -1,10 +1,19 @@
 defmodule Shenu.Message.Email do
-  defstruct user: nil,
-            domain: nil
+  use Shenu.Message
 
-  def new(opts \\ []) do
-    struct(__MODULE__, opts)
-  end
+  defmessage %{
+    type: "object",
+    properties: %{
+      user: %{
+        type: "string"
+      },
+      domain: %{
+        type: "string",
+        format: "hostname"
+      }
+    },
+    additionalProperties: false
+  }
 end
 
 defimpl Shenu.Message, for: Shenu.Message.Email do

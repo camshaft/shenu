@@ -1,9 +1,32 @@
 defmodule Shenu.Message.Coordinate do
+  use Shenu.Message
+
   defstruct dimensions: %{}
 
-  def new(dimensions \\ []) do
-    dimensions = Enum.into(dimensions, %{})
-    %__MODULE__{dimensions: dimensions}
+  def new(dimensions \\ %{}) when is_map(dimensions) do
+    cast(%{dimensions: dimensions})
+  end
+
+  def schema(dimensions \\ [])
+  def schema(dimensions) when is_list(dimensions) do
+    dimensions
+    |> Enum.reduce(%{}, fn(key, acc) ->
+      Map.put(acc, key, %{"type" => "number"})
+    end)
+    |> schema()
+  end
+  def schema(dimensions) when is_map(dimensions) and map_size(dimensions) > 0 do
+    %{
+      "type" => "object",
+      "properties" => dimensions,
+      "required" => Map.keys(dimensions),
+      "additionalProperties" => false
+    }
+  end
+  def schema(_) do
+    %{
+      "type" => "object"
+    }
   end
 end
 

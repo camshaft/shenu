@@ -1,6 +1,18 @@
 defmodule Shenu.Message.PhoneNumber do
-  defstruct country_code: nil,
-            national_number: nil
+  use Shenu.Message
+
+  defmessage %{
+    type: "object",
+    properties: %{
+      country_code: %{
+        type: "integer"
+      },
+      national_number: %{
+        type: "integer"
+      }
+    },
+    additionalProperties: false
+  }
 end
 
 defimpl Shenu.Message, for: Shenu.Message.PhoneNumber do

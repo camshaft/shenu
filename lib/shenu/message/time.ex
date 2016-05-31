@@ -1,11 +1,27 @@
 defmodule Shenu.Message.Time do
-  defstruct hour: 0,
-            minute: 0,
-            second: 0
+  use Shenu.Message
 
-  def new(opts \\ []) do
-    struct(__MODULE__, opts)
-  end
+  defmessage %{
+    type: "object",
+    properties: %{
+      hour: %{
+        type: "integer",
+        minimum: 0,
+        maximum: 23
+      },
+      minute: %{
+        type: "integer",
+        minimum: 0,
+        maximum: 59
+      },
+      second: %{
+        type: "integer",
+        minimum: 0,
+        maximum: 59
+      }
+    },
+    additionalProperties: false
+  }
 end
 
 defimpl Calendar.ContainsTime, for: Shenu.Message.Time do

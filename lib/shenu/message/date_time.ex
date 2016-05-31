@@ -1,15 +1,44 @@
 defmodule Shenu.Message.DateTime do
-  defstruct year: 1,
-            month: 1,
-            day: 1,
-            hour: 0,
-            minute: 0,
-            second: 0,
-            timezone: "UTC"
+  use Shenu.Message
 
-  def new(opts \\ []) do
-    struct(__MODULE__, opts)
-  end
+  defmessage %{
+    type: "object",
+    properties: %{
+      year: %{
+        type: "integer"
+      },
+      month: %{
+        type: "integer",
+        minimum: 1,
+        maximum: 12
+      },
+      day: %{
+        type: "integer",
+        minimum: 1,
+        maximum: 31
+      },
+      hour: %{
+        type: "integer",
+        minimum: 0,
+        maximum: 23
+      },
+      minute: %{
+        type: "integer",
+        minimum: 0,
+        maximum: 59
+      },
+      second: %{
+        type: "integer",
+        minimum: 0,
+        maximum: 59
+      },
+      timezone: %{
+        type: "string",
+        default: "UTC"
+      }
+    },
+    additionalProperties: false
+  }
 end
 
 defimpl Calendar.ContainsDateTime, for: Shenu.Message.DateTime do

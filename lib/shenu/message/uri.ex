@@ -1,16 +1,35 @@
 defmodule Shenu.Message.URI do
-  defstruct authority: nil,
-            fragment: nil,
-            host: nil,
-            path: nil,
-            port: nil,
-            query: nil,
-            scheme: nil,
-            userinfo: nil
+  use Shenu.Message
 
-  def new(opts \\ []) do
-    struct(__MODULE__, opts)
-  end
+  defmessage %{
+    type: "object",
+    properties: %{
+      fragment: %{
+        type: "string"
+      },
+      host: %{
+        type: "string",
+        format: "hostname"
+      },
+      path: %{
+        type: "string"
+      },
+      port: %{
+        type: "integer",
+        minimum: 0
+      },
+      query: %{
+        type: "string"
+      },
+      scheme: %{
+        type: "string"
+      },
+      userinfo: %{
+        type: "string"
+      }
+    },
+    additionalProperties: false
+  }
 end
 
 defimpl Shenu.Message, for: Shenu.Message.URI do

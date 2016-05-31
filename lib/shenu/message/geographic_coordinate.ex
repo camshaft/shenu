@@ -1,12 +1,22 @@
 defmodule Shenu.Message.GeographicCoordinate do
-  defstruct [latitude: 0,
-             longitude: 0,
-             # elevation: 0 ?
-            ]
+  use Shenu.Message
 
-  def new(opts \\ []) do
-    struct(__MODULE__, opts)
-  end
+  defmessage %{
+    type: "object",
+    properties: %{
+      latitude: %{
+        type: "decimal"
+      },
+      longitude: %{
+        type: "decimal"
+      },
+      altitude: %{
+        type: "decimal"
+      }
+    },
+    required: [:latitude, :longitude],
+    additionalProperties: false
+  }
 end
 
 defimpl Geocalc.Point, for: Shenu.Message.GeographicCoordinate do

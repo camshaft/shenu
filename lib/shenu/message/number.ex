@@ -1,9 +1,9 @@
 defmodule Shenu.Message.Number do
-  defstruct value: 0
+  use Shenu.Message
 
-  def new(value) do
-    %__MODULE__{value: value}
-  end
+  defmessage %{
+    type: "number"
+  }
 end
 
 defimpl Shenu.Message, for: [Integer, Float] do

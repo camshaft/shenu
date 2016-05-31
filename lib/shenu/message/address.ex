@@ -1,15 +1,34 @@
 defmodule Shenu.Message.Address do
-  defstruct number: nil,
-            street: nil,
-            unit: nil,
-            city: nil,
-            district: nil,
-            region: nil,
-            postcode: nil
+  use Shenu.Message
 
-  def new(opts \\ []) do
-    struct(__MODULE__, opts)
-  end
+  defmessage %{
+    type: "object",
+    properties: %{
+      street_address: %{
+        type: "string"
+      },
+      extended_address: %{
+        type: "string"
+      },
+      post_office_box: %{
+        type: "string"
+      },
+      postal_code: %{
+        type: "string"
+      },
+      locality: %{
+        type: "string"
+      },
+      region: %{
+        type: "string"
+      },
+      country_name: %{
+        type: "string"
+      },
+    },
+    required: [:country_name, :locality, :region],
+    additionalProperties: false
+  }
 end
 
 defimpl Shenu.Message, for: Shenu.Message.Address do

@@ -8,19 +8,29 @@ defmodule Shenu.Message.Color do
       42.2736269661734
   """
 
-  defstruct r: 0,
-            g: 0,
-            b: 0
+  use Shenu.Message
 
-  def new(opts \\ [])
-  def new(rgb) when is_binary(rgb) do
-    ## TODO
-  end
-  def new(opts) do
-    %__MODULE__{r: opts[:r] || 0,
-                g: opts[:g] || 0,
-                b: opts[:b] || 0}
-  end
+  defmessage %{
+    type: "object",
+    properties: %{
+      r: %{
+        type: "integer",
+        minimum: 0,
+        maximum: 255
+      },
+      g: %{
+        type: "integer",
+        minimum: 0,
+        maximum: 255
+      },
+      b: %{
+        type: "integer",
+        minimum: 0,
+        maximum: 255
+      }
+    },
+    additionalProperties: false
+  }
 end
 
 defimpl Shenu.Message, for: Shenu.Message.Color do

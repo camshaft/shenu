@@ -1,9 +1,9 @@
 defmodule Shenu.Message.Text do
-  defstruct value: ""
+  use Shenu.Message
 
-  def new(value \\ "") do
-    %__MODULE__{value: value}
-  end
+  defmessage %{
+    type: "string"
+  }
 end
 
 defimpl Shenu.Message, for: BitString do

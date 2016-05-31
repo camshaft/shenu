@@ -1,10 +1,20 @@
 defmodule Shenu.Message.Money do
-  defstruct currency: "USD",
-            amount: 0
+  use Shenu.Message
 
-  def new(opts \\ []) do
-    struct(__MODULE__, opts)
-  end
+  defmessage %{
+    type: "object",
+    properties: %{
+      currency: %{
+        type: "string",
+        default: "USD"
+      },
+      amount: %{
+        type: "decimal"
+      }
+    },
+    required: [:amount],
+    additionalProperties: false
+  }
 end
 
 defimpl Shenu.Message, for: Shenu.Message.Money do

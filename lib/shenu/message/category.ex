@@ -13,10 +13,18 @@ defmodule Shenu.Message.Category do
       0
   """
 
-  defstruct id: nil
+  use Shenu.Message
 
-  def new(id \\ nil) do
-    %__MODULE__{id: id}
+  defmessage %{
+    type: "string"
+  }
+
+  def schema(acceptable) when is_list(acceptable) and length(acceptable) > 0 do
+    super(acceptable)
+    |> Map.put("enum", acceptable)
+  end
+  def schema(opts) do
+    super(opts)
   end
 end
 
