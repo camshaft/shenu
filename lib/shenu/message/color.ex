@@ -1,32 +1,42 @@
 defmodule Shenu.Message.Color do
   @moduledoc """
-  Struct representing RGB colors
+  RGBA color
+  """
 
+  use Shenu.Message
+
+  @doc """
       iex> a = Shenu.Message.Color.new(r: 20, g: 40, b: 50)
       iex> b = Shenu.Message.Color.new(r: 120, g: 10, b: 70)
       iex> Shenu.Message.difference(a, b)
       42.2736269661734
   """
-
-  use Shenu.Message
-
   defmessage %{
     type: "object",
     properties: %{
       r: %{
         type: "integer",
         minimum: 0,
-        maximum: 255
+        maximum: 255,
+        default: 0
       },
       g: %{
         type: "integer",
         minimum: 0,
-        maximum: 255
+        maximum: 255,
+        default: 0
       },
       b: %{
         type: "integer",
         minimum: 0,
-        maximum: 255
+        maximum: 255,
+        default: 0
+      },
+      a: %{
+        type: "number",
+        minimum: 0.0,
+        maximum: 1.0,
+        default: 1.0
       }
     },
     additionalProperties: false

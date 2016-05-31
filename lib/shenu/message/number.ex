@@ -2,7 +2,8 @@ defmodule Shenu.Message.Number do
   use Shenu.Message
 
   defmessage %{
-    type: "number"
+    type: "number",
+    default: 0
   }
 end
 

@@ -1,7 +1,11 @@
 defmodule Shenu.Message.Category do
   @moduledoc """
-  Struct representing categorical selection/identification
+  Categorical selection/identification
+  """
 
+  use Shenu.Message
+
+  @doc """
       iex> a = Shenu.Message.Category.new("123")
       iex> b = Shenu.Message.Category.new("456")
       iex> Shenu.Message.difference(a, b)
@@ -12,9 +16,6 @@ defmodule Shenu.Message.Category do
       iex> Shenu.Message.difference(a, b)
       0
   """
-
-  use Shenu.Message
-
   defmessage %{
     type: "string"
   }

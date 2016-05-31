@@ -10,27 +10,41 @@ defprotocol Shenu.Message do
 
   Kernel.defmacro defmessage(schema) do
     quote bind_quoted: binding do
+      name = Module.split(__MODULE__) |> List.last |> Mix.Utils.underscore()
+
+      schema = schema
+      |> Map.put("$schema", "http://json-schema.org/schema#")
+      |> Map.put("id", "https://rawgit.com/camshaft/shenu/master/schemas/#{name}.json#")
+      |> Map.put("title", name)
+      |> Map.put("description", String.strip(@moduledoc || ""))
+
       case schema do
         %{type: "object"} ->
-          defstruct(for {key, _} <- schema.properties do
-            {key, nil}
+          defstruct(for {key, props} <- schema.properties do
+            {key, props[:default]}
           end)
 
           def new(opts \\ %{}) do
             cast(opts)
           end
         _ ->
-          defstruct value: nil
+          default = schema[:default]
+          defstruct value: default
 
-          def new(value \\ nil) do
+          def new(value \\ unquote(default)) do
             %__MODULE__{value: value}
           end
       end
 
-      bin = schema |> Poison.encode!() |> Poison.decode!() |> Macro.escape()
+      encoded = Poison.encode!(schema)
+      escaped = encoded |> Poison.decode!() |> Macro.escape()
+
+      if Mix.env in [:dev, :prod] do
+        File.write!(__DIR__ <> "/../../../schemas/#{name}.json", encoded)
+      end
 
       def schema(_ \\ []) do
-        unquote(bin)
+        unquote(escaped)
       end
       defoverridable schema: 1
     end
