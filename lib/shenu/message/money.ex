@@ -9,7 +9,7 @@ defmodule Shenu.Message.Money do
         default: "USD"
       },
       amount: %{
-        type: "decimal",
+        type: "number",
       }
     },
     required: [:amount],

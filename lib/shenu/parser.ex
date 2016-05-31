@@ -4,6 +4,7 @@ defmodule Shenu.Parser do
 
   alias __MODULE__.Group
 
+  def new(message_type)
   def new(message_type) when is_atom(message_type) do
     new(message_type, message_type.schema())
   end
@@ -11,6 +12,7 @@ defmodule Shenu.Parser do
     Group.new(parsers)
   end
 
+  def new(message_type, opts)
   def new(message_type, %{"type" => _} = schema) when is_atom(message_type) do
     %__MODULE__{message_type: message_type,
                 schema: Shenu.Schema.init(schema)}
@@ -19,6 +21,7 @@ defmodule Shenu.Parser do
     new(message_type, message_type.schema(opts))
   end
 
+  def parse(parser, input)
   def parse(%Group{} = group, input) do
     Group.parse(group, input)
   end
@@ -31,6 +34,7 @@ defmodule Shenu.Parser do
     end
   end
 
+  def schema(parser)
   def schema(%Group{} = group) do
     Group.schema(group)
   end

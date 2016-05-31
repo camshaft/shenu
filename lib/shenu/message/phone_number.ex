@@ -8,7 +8,7 @@ defmodule Shenu.Message.PhoneNumber do
         type: "integer"
       },
       national_number: %{
-        type: "integer"
+        type: "string"
       }
     },
     additionalProperties: false

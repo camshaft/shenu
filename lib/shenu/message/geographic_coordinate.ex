@@ -5,13 +5,13 @@ defmodule Shenu.Message.GeographicCoordinate do
     type: "object",
     properties: %{
       latitude: %{
-        type: "decimal"
+        type: "number"
       },
       longitude: %{
-        type: "decimal"
+        type: "number"
       },
       altitude: %{
-        type: "decimal"
+        type: "number"
       }
     },
     required: [:latitude, :longitude],

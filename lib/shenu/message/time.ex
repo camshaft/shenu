@@ -6,8 +6,7 @@ defmodule Shenu.Message.Time do
     properties: %{
       hour: %{
         type: "integer",
-        minimum: 0,
-        maximum: 23
+        minimum: 0
       },
       minute: %{
         type: "integer",

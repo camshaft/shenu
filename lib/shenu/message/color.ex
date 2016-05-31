@@ -5,12 +5,6 @@ defmodule Shenu.Message.Color do
 
   use Shenu.Message
 
-  @doc """
-      iex> a = Shenu.Message.Color.new(r: 20, g: 40, b: 50)
-      iex> b = Shenu.Message.Color.new(r: 120, g: 10, b: 70)
-      iex> Shenu.Message.difference(a, b)
-      42.2736269661734
-  """
   defmessage %{
     type: "object",
     properties: %{
