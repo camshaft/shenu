@@ -1,6 +1,6 @@
 # shenu [![Build Status](https://travis-ci.org/camshaft/shenu.svg?branch=master)](https://travis-ci.org/camshaft/shenu) [![Hex.pm](https://img.shields.io/hexpm/v/shenu.svg?style=flat-square)](https://hex.pm/packages/shenu) [![Hex.pm](https://img.shields.io/hexpm/dt/shenu.svg?style=flat-square)](https://hex.pm/packages/shenu)
 
-set of utilities for parsing, handling, and comparing messages
+set of utilities for parsing, validating, and diffing messages
 
 ## Installation
 

@@ -27,6 +27,8 @@ defmodule Shenu.Parser do
   end
   def parse(%{message_type: message_type, schema: schema}, input) do
     case Shenu.Schema.validate(schema, input) do
+      :ok when is_nil(input) ->
+        nil
       :ok ->
         message_type.new(input)
       error ->

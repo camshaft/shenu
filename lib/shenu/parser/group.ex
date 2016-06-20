@@ -28,10 +28,19 @@ defmodule Shenu.Parser.Group do
     case Shenu.Schema.validate(schema, input) do
       :ok ->
         Enum.reduce(types, %{}, fn({key, type}, acc) ->
-          Map.put(acc, key, type.new(Map.get(input, key)))
+          case Map.get(input, key) do
+            nil ->
+              Map.put(acc, key, nil)
+            value ->
+              Map.put(acc, key, type.new(value))
+          end
         end)
       error ->
         error
     end
+  end
+
+  def schema(%{schema: schema}) do
+    schema
   end
 end
