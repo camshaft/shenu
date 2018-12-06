@@ -1,1 +1,1 @@
-{"title":"category","id":"https://rawgit.com/camshaft/shenu/master/schemas/category.json#","description":"Categorical selection/identification","$schema":"http://json-schema.org/schema#","type":"string"}
+{"title":"category","id":"https://cdn.jsdelivr.net/gh/camshaft/shenu/schemas/category.json#","description":"Categorical selection/identification","$schema":"http://json-schema.org/schema#","type":"string"}

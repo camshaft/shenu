@@ -10,7 +10,7 @@ defprotocol Shenu.Message do
 
   Kernel.defmacro defmessage(schema) do
     quote bind_quoted: binding do
-      prefix = Application.get_env(:shenu, :schema_url, "https://rawgit.com/camshaft/shenu/master/schemas")
+      prefix = Application.get_env(:shenu, :schema_url, "https://cdn.jsdelivr.net/gh/camshaft/shenu/schemas")
       name = Module.split(__MODULE__) |> List.last |> Mix.Utils.underscore()
 
       schema = schema
